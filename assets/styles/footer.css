@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 50px;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.footer {
+    margin: 100px auto;
+}
+
+.footer img {
+    width: 100%;
+    min-width: 100px;
+    max-width: 180px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #1e1e1e;
+    color: #fff;
+    line-height: 3;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+.footer-small {
+    width: 90%;
+    margin: 40px auto 0;
+    text-align: center;
+}
