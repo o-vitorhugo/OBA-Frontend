@@ -185,3 +185,71 @@ section {
     height: auto;
     margin-bottom: 10px;
 }
+
+.filtros {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filtros select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease;
+    cursor: pointer;
+}
+
+.filtros select:hover,
+.filtros select:focus {
+    border-color: #f8a600;
+    outline: none;
+}
+
+.filtrar {
+    max-width: 150px;
+    height: 42px;
+    font-size: 16px;
+    margin: 0;
+    background-color: #f8a600;
+}
+
+.filtrar:hover {
+    transform: none;
+}
+
+.info {
+    width: 80%;
+}
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card-laranja,
+.card-azul {
+    max-width: 60%;
+    padding: 25px 30px;
+    border-radius: 16px;
+    word-wrap: break-word;
+    font-size: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-laranja {
+    background-color: #f8a600dd;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.card-azul {
+    background-color: #24bbd3cc;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}

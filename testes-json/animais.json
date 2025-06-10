@@ -3,7 +3,7 @@
     "nome": "Garfield",
     "especie": "Gato",
     "idade": "3 anos",
-    "sexo": "Masculino",
+    "sexo": "Macho",
     "porte": "Médio",
     "imagem": ""
   },
@@ -11,7 +11,7 @@
     "nome": "Garfield",
     "especie": "Gato",
     "idade": "3 anos",
-    "sexo": "Masculino",
+    "sexo": "Macho",
     "porte": "Médio",
     "imagem": "https://petconsultadiadema.com.br/images/blog/meu-gato-nao-quer-comer/meu-gato-nao-quer-comer.jpg"
   },
@@ -19,7 +19,7 @@
     "nome": "Cacau",
     "especie": "Cachorro",
     "idade": "7 anos",
-    "sexo": "Feminino",
+    "sexo": "Fêmea",
     "porte": "Pequeno",
     "imagem": "https://img.iol.pt/preset/680287efd34ef72ee444ece1/og/vmais"
   },
@@ -27,7 +27,7 @@
     "nome": "Apolo",
     "especie": "Cachorro",
     "idade": "2 anos",
-    "sexo": "Masculino",
+    "sexo": "Macho",
     "porte": "Médio",
     "imagem": "https://www.portaldodog.com.br/wp-content/uploads/2021/04/canil-de-confianc%CC%A7a-4-scaled.jpeg"
   }

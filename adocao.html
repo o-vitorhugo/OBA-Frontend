@@ -19,9 +19,80 @@
         <div id="navbar"></div>
     </header>
 
-
     <main>
+        <section class="animais-destaque">
+            <div class="subtitulo">
+                <hr>
+                <p>ECONTRE SEU NOVO MELHOR AMIGO</p>
+            </div>
 
+            <h2>Animais para Adoção</h2>
+
+            <div class="filtros">
+                <select id="filtro-especie">
+                    <option value="">Espécie</option>
+                    <option value="Cachorro">Cachorro</option>
+                    <option value="Gato">Gato</option>
+                </select>
+
+                <select id="filtro-porte">
+                    <option value="">Porte</option>
+                    <option value="Pequeno">Pequeno</option>
+                    <option value="Médio">Médio</option>
+                    <option value="Grande">Grande</option>
+                </select>
+
+                <select id="filtro-sexo">
+                    <option value="">Sexo</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
+                </select>
+                
+                <button id="limpar-filtros" class="button-laranja filtrar">Limpar Filtros</button>
+            </div>
+
+            <div class="card-container" id="cards-animais">
+                <!-- Cards serão inseridos aqui -->
+            </div>
+
+            <a href="./adocao.html" class="button-laranja">Ver Mais</a>
+        </section>
+
+        <section class="info">
+            <div class="subtitulo">
+                <hr>
+                <p>ANTES DE ADOTAR</p>
+            </div>
+
+            <h2>O Que Você Precisa Saber</h2>
+
+            <div class="info-cards">
+                <div class="card-laranja">Todos os animais são castrados?</div>
+                <div class="card-azul"><strong>Sim!</strong> <br> Filhotes com menos de 4 meses terão castração
+                    garantida e
+                    obrigatória.</div>
+
+                <div class="card-laranja">Serei responsável pela vacinação?</div>
+                <div class="card-azul">A OBA! doa o animal vacinado, porém a continuidade do protocolo vacinal, que é
+                    anual,
+                    passa a ser responsabilidade do adotante.</div>
+
+                <div class="card-laranja">Posso adotar mais de um Pet?</div>
+                <div class="card-azul">Sim, desde que tenha condições financeiras e espaço físico para assumir mais de
+                    um
+                    patudo.</div>
+
+                <div class="card-laranja">Quais são os pré-requisitos na adoção de gatos?</div>
+                <div class="card-azul">Apartamentos precisam ter tela em todas as janelas - incluindo todas as
+                    basculantes -
+                    e sacadas. Casas somente aquelas com muro acima de 4 metros e que não tenha risco de fuga. Ou casas
+                    com
+                    tela em todas as janelas. <br><br>
+
+                    Não doamos para locais onde o animal vai ter vida livre, evitando, assim, que corram riscos como
+                    atropelamentos, briga com cães, envenenamentos, violência etc.</div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -29,6 +100,7 @@
     </footer>
 
     <script type="text/javascript" src="./assets/scripts/loadings.js"></script>
+    <script type="text/javascript" src="./assets/scripts/adocao.js"></script>
 </body>
 
 </html>
