@@ -166,7 +166,8 @@ section {
     object-fit: cover;
 }
 
-.home-como-ajudar .textos-ajuda {
+.home-como-ajudar .textos-ajuda,
+.mutirao-como-ajudar .textos-ajuda {
     margin-top: 60px;
     display: flex;
     justify-content: space-between;
@@ -223,7 +224,7 @@ section {
 }
 
 .info {
-    width: 80%;
+    width: 65%;
 }
 
 .info-cards {
@@ -234,7 +235,7 @@ section {
 
 .card-laranja,
 .card-azul {
-    max-width: 60%;
+    max-width: 65%;
     padding: 25px 30px;
     border-radius: 16px;
     word-wrap: break-word;
@@ -245,12 +246,14 @@ section {
 .card-laranja {
     background-color: #f8a600dd;
     align-self: flex-end;
+    text-align: right;
     border-bottom-right-radius: 0;
 }
 
 .card-azul {
     background-color: #24bbd3cc;
     align-self: flex-start;
+    text-align: left;
     border-bottom-left-radius: 0;
 }
 
@@ -359,4 +362,33 @@ section {
     height: 450px;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.mutirao p {
+    margin-bottom: 30px;
+}
+
+.mutirao-como-ajudar .textos-ajuda {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mutirao-como-ajudar .ajuda-opcao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    height: 200px;
+    padding: 0 20px;
+    gap: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mutirao-como-ajudar .azul {   
+    background-color: #dbedfb;
+}
+
+.mutirao-como-ajudar .rosa {
+    background-color: #d9b8d5;
 }
