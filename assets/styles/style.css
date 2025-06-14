@@ -257,7 +257,8 @@ section {
     border-bottom-left-radius: 0;
 }
 
-.como-ajudar {
+.como-ajudar,
+.sobre-nos {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -269,7 +270,8 @@ section {
     max-width: 678px;
 }
 
-.como-ajudar .imagem {
+.como-ajudar .imagem,
+.sobre-nos img {
     width: 100%;
     max-width: 578px;
     height: auto;
@@ -391,4 +393,17 @@ section {
 
 .mutirao-como-ajudar .rosa {
     background-color: #d9b8d5;
+}
+
+.sobre-nos .textos {
+    width: 100%;
+    max-width: 700px;
+}
+
+.sobre-nos .texto-direita {
+    text-align: right;
+}
+
+.sobre-nos img {
+    max-height: 580px;
 }
