@@ -11,7 +11,7 @@
 .footer-content {
     display: flex;
     justify-content: space-around;
-    background-color: #1e1e1e;
+    background-color: #000;
     color: #fff;
     line-height: 2.8;
     font-size: 14px;
