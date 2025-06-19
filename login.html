@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/login.css">
+
+    <link rel="icon" href="./assets/images/logo-oba.svg" type="image/png">
+
+    <title>Login – OBA!</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="./assets/images/logo-oba-2.svg" alt="Logo Organização Bem-Animal">
+
+            <a href="./index.html" class="nav-button">Voltar para Site</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login">
+            <h2 style="font-size: xx-large;">Login</h2>
+                <form>
+                    <input type="email" id="email" placeholder="E-mail" class="formTextBox"><br>
+                    
+                    <div class="senha-container">
+                        <input type="password" id="senha" placeholder="Senha" class="formTextBox">
+                        <input type="checkbox" id="hideButton">
+                        <label for="hideButton" class="icone-olho"></label>
+                    </div>
+
+                    <button type="submit" id="entrar" class="entrar-button">Entrar</button>
+                </form>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="./assets/scripts/login.js"></script>
+</body>
+
+</html>
