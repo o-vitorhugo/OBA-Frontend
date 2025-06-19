@@ -29,6 +29,7 @@ p {
     display: flex;
     align-items: center;
     gap: 25px;
+    letter-spacing: 1px;
 }
 
 .subtitulo hr {
@@ -44,7 +45,7 @@ p {
 }
 
 section {
-    padding: 0 60px;
+    padding: 0 100px;
     margin: 60px auto;
 }
 
@@ -129,9 +130,9 @@ section {
 }
 
 .secao-colorida {
-    padding: 50px;
-    margin-left: 60px;
-    margin-right: 60px;
+    padding: 50px 40px;
+    margin-left: 100px;
+    margin-right: 100px;
     border-radius: 20px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -262,7 +263,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 45px;
 }
 
 .como-ajudar .textos {
@@ -303,11 +304,12 @@ section {
     text-align: center;
 }
 
-.doacoes {
+.doacoes,
+.contato {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 45px;
 }
 
 .doacoes .text {
@@ -315,8 +317,9 @@ section {
     max-width: 700px;
 }
 
-.faca-uma-doacao {
-    background-color: #24bbd3cc;
+.faca-uma-doacao,
+.fale-conosco {
+    background-color: #24bbd3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -329,27 +332,62 @@ section {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.faca-uma-doacao h3 {
+.faca-uma-doacao h3,
+.fale-conosco h3 {
     font-weight: 600;
 }
 
-.faca-uma-doacao hr {
+.faca-uma-doacao hr,
+.fale-conosco hr {
     background-color: #fff;
     border: none;
     height: 1px;
     margin-bottom: 10px;
 }
 
-.pix {
+.fale-conosco span {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.fale-conosco a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.contato img, 
+.fale-conosco p,
+.entre-em-contato {
+    transition: transform 0.2s ease;
+}
+
+.contato img:hover,
+.fale-conosco p:hover,
+.entre-em-contato:hover {
+    transform: translateY(-2px);
+}
+
+.pix,
+.entre-em-contato {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #000;
     background-color: #fff;
     width: 320px;
+    height: 40px;
     font-weight: 600;
     margin: 30px auto 0;
     border-radius: 5px;
-    text-align: center;
     letter-spacing: 0.5px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.entre-em-contato a {
+    color: #000;
+    font-size: 18px;
 }
 
 .lar-temporario {
