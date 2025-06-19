@@ -1,0 +1,121 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 50px;
+    background-color: #1e1e1e;
+}
+
+.navbar img {
+    width: 100%;
+    min-width: 100px;
+    max-width: 180px;
+}
+
+.nav-button {
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.login {
+    background-color: #f6f6f6;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 6%;
+    text-align: center;
+    padding: 5%;
+    border-radius: 25px;
+}
+
+.formTextBox {
+    width: 100%;
+    max-width: 550px;
+    height: 30px;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 8%;
+    border-radius: 15px;
+    border: none;
+    margin-top: 5vh;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.185);
+    font-size: 16px;
+    background-image: url(/assets/images/paw.png);
+    background-position: 4% 50%;
+    background-size: 22.5px;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+}
+
+.formTextBox:focus {
+    background-image: none;
+}
+
+.senha-container {
+    position: relative;
+}
+
+#hideButton {
+    opacity: 0;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.icone-olho {
+    position: absolute;
+    top: 65px;
+    right: 25px;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    background-image: url("/assets/images/show.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#hideButton:checked+.icone-olho {
+    background-image: url("/assets/images/hide.svg");
+}
+
+.entrar-button {
+    background-color: #24bbd3;
+    border: none;
+    width: 50%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 10%;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entrar-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
