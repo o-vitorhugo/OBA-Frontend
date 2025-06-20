@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+
+    color: #000;
+    font-size: 18px;
+}
+
+header {
+    background-color: #1e1e1e;
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.navMenu {
+    color: #24bbd3;
+    font-weight: 400;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding: 0;
+}
+
+.navMenu p {
+    font-weight: 600;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    letter-spacing: 0.7px;
+}
+
+.navOpt,
+.currentOpt {
+    width: 70%;
+    height: 30px;
+    padding: 10px 20px;
+    line-height: 30px;
+    letter-spacing: 0.7px;
+}
+
+.currentOpt {
+    background-color: #24bbd333;
+    color: #24bbd3;
+    border-radius: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(153, 153, 153);
+    font-size: 18px;
+}
+
+section {
+    padding: 0 100px;
+    margin: 60px auto;
+}
+
+main {
+    margin-left: 20vw;
+    padding: 20px 10px;
+}
+
+h2 {
+    font-size: 35px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+.painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#botao-abrir-modal {
+    font-size: 32px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #24bbd3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#botao-abrir-modal:hover {
+    background-color: #24bbd3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000088;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #f6f6f6;
+    padding: 40px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 16px 12px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.185);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #f8a600;
+}
+
+.botoes-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.botoes-form button {
+    flex: 1;
+    background-color: #24bbd3;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.185);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.botoes-form button:hover {
+    background-color: #24bbd3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#fechar-modal,
+#cancelar-remocao {
+    background-color: #f8a600;
+}
+
+#fechar-modal:hover,
+#cancelar-remocao:hover {
+    background-color: #f8a600ee;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: flex-start;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.185);
+    padding: 20px 40px;
+    /* overflow: hidden; */
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
+.card-info {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.card-acoes button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-acoes button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card-acoes img {
+    width: 30px;
+    height: 30px;
+}

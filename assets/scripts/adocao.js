@@ -7,10 +7,10 @@ let listaAnimais = [];
 
 // Função para renderizar cards filtrados
 function renderizarAnimais(animais) {
-    container.innerHTML = "";
+    container.innerHTML = ``;
 
     if (!animais.length) {
-        container.innerHTML = "<p>Nenhum animal encontrado com os filtros selecionados.</p>";
+        container.innerHTML = `<p>Nenhum animal encontrado com os filtros selecionados.</p>`;
         return;
     }
 
@@ -49,20 +49,20 @@ function aplicarFiltros() {
     renderizarAnimais(filtrados);
 }
 
-// Carregar os dados e configurar eventos
-fetch("./testes-json/animais.json")
-    .then(res => {
-        if (!res.ok) throw new Error("Erro ao carregar os dados");
-        return res.json();
-    })
-    .then(animais => {
-        listaAnimais = animais.slice().reverse(); // mais recentes no topo
+// Carregar os dados do localStorage
+const dadosSalvos = localStorage.getItem("animais");
+
+if (dadosSalvos) {
+    try {
+        listaAnimais = JSON.parse(dadosSalvos).slice().reverse(); // mais recentes no topo
         renderizarAnimais(listaAnimais);
-    })
-    .catch(err => {
-        container.innerHTML = "<p>Não foi possível carregar os animais no momento.</p>";
-        console.error("Erro ao buscar animais:", err);
-    });
+    } catch (error) {
+        container.innerHTML = `<p>Não foi possível carregar os animais no momento.</p>`;
+        console.error("Erro ao buscar animais:", error);
+    }
+} else {
+    container.innerHTML = `<p>Nenhum animal disponível no momento.</p>`;
+}
 
 // Eventos para filtros
 filtroEspecie.addEventListener("change", aplicarFiltros);
@@ -73,9 +73,9 @@ filtroSexo.addEventListener("change", aplicarFiltros);
 const botaoLimpar = document.getElementById("limpar-filtros");
 
 botaoLimpar.addEventListener("click", () => {
-  filtroEspecie.value = "";
-  filtroPorte.value = "";
-  filtroSexo.value = "";
+    filtroEspecie.value = "";
+    filtroPorte.value = "";
+    filtroSexo.value = "";
 
-  renderizarAnimais(listaAnimais);
+    renderizarAnimais(listaAnimais);
 });
