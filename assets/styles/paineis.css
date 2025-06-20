@@ -19,6 +19,11 @@ header {
     width: 20vw;
     height: 100vh;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+    box-sizing: border-box;
 }
 
 .navMenu {
@@ -55,6 +60,29 @@ a {
     text-decoration: none;
     color: rgba(153, 153, 153);
     font-size: 18px;
+}
+
+.nav-button {
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 10px auto;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 section {
@@ -199,6 +227,10 @@ h3 {
     justify-content: flex-start;
 }
 
+.doacoes .cards-container {
+    gap: 40px;
+}
+
 .card {
     display: flex;
     align-items: center;
@@ -207,16 +239,27 @@ h3 {
     border-radius: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.185);
     padding: 20px 40px;
-    /* overflow: hidden; */
     width: 100%;
     max-width: 1000px;
     height: auto;
+}
+
+.doacoes .card {
+    max-width: 380px;
 }
 
 .card-info {
     display: flex;
     align-items: center;
     gap: 40px;
+}
+
+.doacoes .card-info {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 10px;
 }
 
 .card img {
@@ -232,6 +275,10 @@ h3 {
     justify-content: center;
     gap: 25px;
     padding: 20px;
+}
+
+.doacoes .card-acoes {
+    flex-direction: column;
 }
 
 .card-acoes button {
