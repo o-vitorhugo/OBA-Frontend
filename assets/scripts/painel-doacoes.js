@@ -1,10 +1,10 @@
-const form = document.getElementById("form-animal");
+const form = document.getElementById("form-doacao");
 
-let animais = JSON.parse(localStorage.getItem("animais")) || [];
+let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
 let editandoIndex = null;
 
 function salvarLocalStorage() {
-    localStorage.setItem("animais", JSON.stringify(animais));
+    localStorage.setItem("doacoes", JSON.stringify(doacoes));
 }
 
 function limparFormulario() {
@@ -13,30 +13,32 @@ function limparFormulario() {
     form.querySelector("button[type='submit']").textContent = "Cadastrar";
 }
 
-const container = document.getElementById("cards-animais");
+const container = document.getElementById("cards-doacoes");
 
 function atualizarTabela() {
     container.innerHTML = ``;
 
-    if (animais.length === 0) {
-        container.innerHTML = `<p>Nenhum animal cadastrado.</p>`;
+    if (doacoes.length === 0) {
+        container.innerHTML = `<p>Nenhuma doação cadastrada.</p>`;
         return;
     }
 
-    animais.forEach((animal, index) => {
+    doacoes.forEach((doacao, index) => {
         const card = document.createElement("div");
         card.classList.add("card");
 
         card.innerHTML = `
             <div class="card-info">
-                <img src="${animal.imagem}" alt="${animal.nome}" onerror="this.src='./assets/images/placeholder.png'" />
-                <h3>${animal.nome}</h3>
+                <h3>${doacao.nome}</h3>
+                <p>Tipo: ${doacao.tipo}</p>
+                <p>Descrição: ${doacao.descricao}</p>
+                <p>Data: ${doacao.data}</p>
             </div>
             <div class="card-acoes">
-                <button onclick="editarAnimal(${index})">
+                <button onclick="editarDoacao(${index})">
                     <img src="./assets/images/pencil.svg">
                 </button>
-                <button onclick="removerAnimal(${index})">
+                <button onclick="removerDoacao(${index})">
                     <img src="./assets/images/trash.svg">
                 </button>
             </div>
@@ -46,14 +48,12 @@ function atualizarTabela() {
     });
 }
 
-function editarAnimal(index) {
-    const animal = animais[index];
-    document.getElementById("nome").value = animal.nome;
-    document.getElementById("especie").value = animal.especie;
-    document.getElementById("idade").value = animal.idade;
-    document.getElementById("sexo").value = animal.sexo;
-    document.getElementById("porte").value = animal.porte;
-    document.getElementById("imagem").value = animal.imagem;
+function editarDoacao(index) {
+    const doacao = doacoes[index];
+    document.getElementById("nome").value = doacao.nome;
+    document.getElementById("tipo").value = doacao.tipo;
+    document.getElementById("descricao").value = doacao.descricao;
+    document.getElementById("data").value = doacao.data;
 
     editandoIndex = index;
     form.querySelector("button[type='submit']").textContent = "Salvar Alterações";
@@ -63,14 +63,14 @@ function editarAnimal(index) {
 
 let indiceParaRemover = null;
 
-function removerAnimal(index) {
+function removerDoacao(index) {
     indiceParaRemover = index;
     document.getElementById('modal-confirmacao').classList.remove('hidden');
 }
 
 document.getElementById('confirmar-remocao').addEventListener('click', () => {
     if (indiceParaRemover !== null) {
-        animais.splice(indiceParaRemover, 1);
+        doacoes.splice(indiceParaRemover, 1);
         salvarLocalStorage();
         atualizarTabela();
         indiceParaRemover = null;
@@ -86,19 +86,17 @@ document.getElementById('cancelar-remocao').addEventListener('click', () => {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const novoAnimal = {
+    const novaDoacao = {
         nome: document.getElementById("nome").value.trim(),
-        especie: document.getElementById("especie").value.trim(),
-        idade: document.getElementById("idade").value.trim(),
-        sexo: document.getElementById("sexo").value,
-        porte: document.getElementById("porte").value,
-        imagem: document.getElementById("imagem").value.trim()
+        tipo: document.getElementById("tipo").value.trim(),
+        descricao: document.getElementById("descricao").value.trim(),
+        data: document.getElementById("data").value,
     };
 
     if (editandoIndex !== null) {
-        animais[editandoIndex] = novoAnimal;
+        doacoes[editandoIndex] = novaDoacao;
     } else {
-        animais.unshift(novoAnimal);
+        doacoes.unshift(novaDoacao);
     }
 
     salvarLocalStorage();
