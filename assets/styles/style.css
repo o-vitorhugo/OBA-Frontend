@@ -357,7 +357,7 @@ section {
     font-size: 20px;
 }
 
-.contato img, 
+.contato img,
 .fale-conosco p,
 .entre-em-contato {
     transition: transform 0.2s ease;
@@ -425,7 +425,7 @@ section {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.mutirao-como-ajudar .azul {   
+.mutirao-como-ajudar .azul {
     background-color: #dbedfb;
 }
 
@@ -444,4 +444,176 @@ section {
 
 .sobre-nos img {
     max-height: 580px;
+}
+
+@media (max-width: 1024px) {
+    section {
+        padding: 0 40px;
+    }
+
+    .secao-colorida {
+        padding: 40px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .home-sobre-nos,
+    .como-ajudar,
+    .sobre-nos,
+    .doacoes,
+    .contato {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .home-sobre-nos img,
+    .como-ajudar .imagem,
+    .sobre-nos img {
+        max-width: 100%;
+    }
+
+    .info {
+        width: 90%;
+    }
+
+    .card-laranja,
+    .card-azul {
+        max-width: 100%;
+    }
+
+    .arrecadacao .textos-arrecadacao {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .sobre-nos img {
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 38px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .subtitulo {
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .card img {
+        height: 260px;
+    }
+
+    .button-laranja {
+        max-width: 180px;
+        font-size: 16px;
+    }
+
+    .pix,
+    .entre-em-contato {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .img-lar img {
+        height: 360px;
+    }
+
+    .mutirao-como-ajudar .ajuda-opcao {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .textos-ajuda,
+    .como-ajudar .textos-ajuda,
+    .arrecadacao .textos-arrecadacao {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info {
+        width: 80%;
+    }
+
+    .sobre-nos img {
+        max-width: 380px;
+        max-height: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 0 20px;
+        margin: 40px auto;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .card img {
+        height: 220px;
+    }
+
+    .card h3,
+    .card p {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .button-adotar,
+    .button-laranja {
+        max-width: 160px;
+        height: 45px;
+        font-size: 15px;
+    }
+
+    .pix,
+    .entre-em-contato {
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .img-lar img {
+        height: 260px;
+    }
+
+    .mutirao-como-ajudar .ajuda-opcao {
+        max-width: 100%;
+        gap: 10px;
+    }
+
+    .subtitulo hr {
+        width: 50px;
+    }
+
+    .faca-uma-doacao,
+    .fale-conosco {
+        max-width: 60%;
+    }
+
+    .sobre-nos img {
+        max-height: 300px;
+    }
 }
