@@ -57,3 +57,44 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     background-color: #1e1e1e;
 }
+
+@media (max-width: 1024px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links a {
+        padding: 8px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar img {
+        max-width: 140px;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+        padding: 6px 14px;
+    }
+}
