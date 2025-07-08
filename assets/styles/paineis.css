@@ -50,6 +50,7 @@ header {
     letter-spacing: 0.7px;
 }
 
+.navOpt:hover,
 .currentOpt {
     background-color: #24bbd333;
     color: #24bbd3;
@@ -303,4 +304,196 @@ h3 {
 .card-acoes img {
     width: 30px;
     height: 30px;
+}
+
+@media (max-width: 1024px) {
+    header {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    header .logo {
+        width: 120px !important;
+        margin: 0;
+    }
+
+    .navMenu {
+        /* flex-direction: row; */
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0 10px;
+        gap: 20px;
+    }
+
+    .navMenu p {
+        display: none;
+    }
+
+    .navOpt,
+    .currentOpt {
+        width: auto;
+        height: auto;
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    .nav-button {
+        margin: 0;
+        width: auto;
+        height: 40px;
+        padding: 0 20px;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    section {
+        padding: 0 20px;
+    }
+
+    .cards-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .modal-content {
+        padding: 30px;
+        max-width: 400px;
+    }
+
+    .modal-content input,
+    .modal-content select {
+        padding: 14px 10px;
+        font-size: 15px;
+    }
+
+    .botoes-form button {
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .cards-container {
+        gap: 25px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card-info img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .card-acoes button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .card-acoes img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .doacoes .card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 40px;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 10px 30px;
+    }
+
+    .menu-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .nav-button {
+        font-size: 14px;
+        height: 38px;
+        padding: 0 16px;
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+
+    .modal-content input,
+    .modal-content select {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .botoes-form {
+        flex-direction: column;
+    }
+
+    .botoes-form button {
+        width: 100%;
+    }
+
+    .cards-container {
+        gap: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+    
+    .card-info img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .card-acoes {
+        gap: 16px;
+    }
+
+    .card-acoes button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-acoes img {
+        width: 20px;
+        height: 20px;
+    }
 }

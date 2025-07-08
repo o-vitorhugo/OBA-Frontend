@@ -129,3 +129,106 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
+
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 20px 30px;
+    }
+
+    .login {
+        margin-top: 10%;
+        padding: 40px 30px;
+    }
+
+    .formTextBox {
+        max-width: 90%;
+    }
+
+    .icone-olho {
+        right: 20px;
+    }
+
+    .entrar-button {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .nav-button {
+        width: 150px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .login {
+        padding: 30px 20px;
+        max-width: 400px;
+    }
+
+    .formTextBox {
+        font-size: 15px;
+        background-size: 20px;
+        text-indent: 16px;
+        padding-left: 10%;
+    }
+
+    .icone-olho {
+        top: 60px;
+        right: 16px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .entrar-button {
+        width: 70%;
+        padding: 16px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 15px 10px;
+    }
+
+    .navbar img {
+        max-width: 140px;
+    }
+
+    .nav-button {
+        width: 130px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .login {
+        margin-top: 15%;
+        padding: 25px 15px;
+        max-width: 300px;
+    }
+
+    .formTextBox {
+        font-size: 14px;
+        background-size: 18px;
+        padding-left: 11%;
+        margin-top: 4vh;
+    }
+
+    .icone-olho {
+        top: 52px;
+        right: 14px;
+        width: 22px;
+        height: 22px;
+    }
+
+    .entrar-button {
+        width: 80%;
+        padding: 14px;
+        font-size: 14px;
+    }
+}
