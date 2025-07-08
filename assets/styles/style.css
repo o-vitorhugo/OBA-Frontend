@@ -204,6 +204,15 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: border-color 0.2s ease;
     cursor: pointer;
+    min-width: 120px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23000' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    padding-right: 40px;
 }
 
 .filtros select:hover,
@@ -355,6 +364,13 @@ section {
     color: #fff;
     text-decoration: none;
     font-size: 20px;
+}
+
+.fale-conosco a p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
 }
 
 .contato img,
