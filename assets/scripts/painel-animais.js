@@ -55,7 +55,7 @@ function atualizarTabela() {
 
         card.innerHTML = `
             <div class="card-info">
-                <img src="${animal.imagem || ''}" alt="${animal.nome}" onerror="this.src='./assets/images/placeholder.png'" />
+                <img src="https://oba-dogs-api.onrender.com/api/dogs/${animal.id}/imagem?t=${Date.now()}" alt="${animal.nome}" onerror="this.src='./assets/images/placeholder.png'">
                 <h3>${animal.nome}</h3>
             </div>
             <div class="card-acoes">
@@ -136,7 +136,7 @@ function editarAnimal(index) {
     document.getElementById("sexo").value = animal.sexo;
     document.getElementById("porte").value = animal.porte;
     document.getElementById("imagem-preview").src = animal.imagem || "";
-    document.getElementById("imagem-preview").style.display = animal.imagem ? "block" : "none";
+    document.getElementById("imagem-preview").src = `https://oba-dogs-api.onrender.com/api/dogs/${animal.id}/imagem?t=${Date.now()}`;
 
     editandoIndex = index;
     form.querySelector("button[type='submit']").textContent = "Salvar Alterações";
@@ -216,6 +216,7 @@ form.addEventListener("submit", async (e) => {
         salvo = await salvarAnimalApi(novoAnimal);
         if (salvo && file) {
             await uploadImagem(salvo.id, file);
+            await new Promise(res => setTimeout(res, 1000)); // espera 1 segundo
             salvo = await buscarAnimalPorId(salvo.id);
         }
         if (salvo) animais.unshift(salvo);
