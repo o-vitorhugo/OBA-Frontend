@@ -34,12 +34,19 @@
                             style="height: 20px; width: auto;vertical-align: -10%;margin-right: 10px;">
                         Animais
                     </div>
-                </a> <br>
+                </a>
                 <a href="./painel-doacoes.html">
                     <div class="navOpt">
                         <img src="./assets/images/coin.svg"
                             style="height: 20px; width: auto;vertical-align: -10%;margin-right: 10px;">
                         Doações
+                    </div>
+                </a>
+                <a href="./painel-usuarios.html">
+                    <div class="navOpt">
+                        <img src="./assets/images/user.svg"
+                            style="height: 20px; width: auto;vertical-align: -10%;margin-right: 10px;">
+                        Usuários
                     </div>
                 </a>
             </div>
@@ -59,7 +66,7 @@
             <div id="modal-cadastro" class="modal hidden">
                 <div class="modal-content">
                     <h3>Cadastrar Animal</h3>
-                    <form id="form-animal">
+                    <form id="form-animal" enctype="multipart/form-data">
                         <input type="text" id="nome" placeholder="Nome" required>
 
                         <select id="especie" required>
@@ -83,7 +90,9 @@
                             <option value="Grande">Grande</option>
                         </select>
 
-                        <input type="url" id="imagem" placeholder="URL da imagem">
+                        <input type="file" id="imagem" placeholder="Imagem" accept="image/*">
+
+                        <img id="imagem-preview" src="" alt="Imagem atual" class="imagem-preview" style="max-height: 150px; margin-top: 10px; display: none;">
 
                         <div class="botoes-form">
                             <button type="submit">Cadastrar</button>
