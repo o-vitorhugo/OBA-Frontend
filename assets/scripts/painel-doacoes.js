@@ -141,9 +141,16 @@ form.addEventListener("submit", async (e) => {
                 },
                 body: JSON.stringify(novaDoacao)
             });
-            if (!response.ok) throw new Error("Erro ao atualizar doação");
+            if (!response.ok) {
+                let errorMessage = `Erro ao atualizar doação (status ${response.status})`;
+                try {
+                    const errorData = await response.json();
+                    if (errorData.message) errorMessage += `: ${errorData.message}`;
+                } catch { }
+                throw new Error(errorMessage);
+            }
 
-            salvo = await response.json();
+            const salvo = await response.json();
             doacoes[editandoIndex] = salvo;
         } else {
             const response = await fetch(API_DOACOES, {

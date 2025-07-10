@@ -8,6 +8,8 @@ const botaoFecharModal = document.getElementById("fechar-modal");
 const container = document.getElementById("cards-usuarios");
 const campoBusca = document.getElementById("busca-usuario");
 
+let editandoUsername = null;
+
 // Redireciona se não estiver logado
 if (!token) {
     alert("Você precisa fazer login.");
@@ -36,14 +38,57 @@ async function carregarUsuarios() {
                     <h3>${user.username}</h3>
                     <p>Permissão: ${user.role}</p>
                 </div>
+                <div class="card-acoes">
+                    <button onclick="editarUsuario('${user.username}')">
+                        <img src="./assets/images/pencil.svg">
+                    </button>
+                    <button onclick="removerUsuario('${user.username}')">
+                        <img src="./assets/images/trash.svg">
+                    </button>
+                </div>
             `;
             container.appendChild(card);
         });
 
     } catch (err) {
+        console.error(err);
         container.innerHTML = "<p>Erro ao carregar usuários.</p>";
     }
 }
+
+function editarUsuario(username) {
+    fetch(`${API_USERS}/${encodeURIComponent(username)}`, {
+        headers: { "Authorization": "Bearer " + token }
+    })
+        .then(res => res.json())
+        .then(user => {
+            document.getElementById("username").value = user.username;
+            document.getElementById("password").value = ""; // Deixe em branco
+            document.getElementById("role").value = user.role;
+
+            editandoUsername = user.username;
+            form.querySelector("button[type='submit']").textContent = "Salvar Alterações";
+            modal.classList.remove("hidden");
+        })
+        .catch(() => alert("Erro ao carregar dados do usuário"));
+}
+
+function removerUsuario(username) {
+    if (!confirm(`Deseja realmente remover o usuário ${username}?`)) return;
+
+    fetch(`${API_USERS}/${encodeURIComponent(username)}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+        .then(res => {
+            if (!res.ok) throw new Error("Erro");
+            carregarUsuarios();
+        })
+        .catch(() => alert("Erro ao remover usuário."));
+}
+
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -54,9 +99,22 @@ form.addEventListener("submit", async (e) => {
         role: document.getElementById("role").value
     };
 
+    let url;
+    let method;
+
+    if (editandoUsername) {
+        // Edição de usuário
+        url = `${API_USERS}/${encodeURIComponent(editandoUsername)}`;
+        method = "PUT";
+    } else {
+        // Criação de novo usuário
+        url = API_USERS;
+        method = "POST";
+    }
+
     try {
-        const response = await fetch(API_USERS, {
-            method: "POST",
+        const response = await fetch(url, {
+            method,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + token
@@ -65,23 +123,32 @@ form.addEventListener("submit", async (e) => {
         });
 
         if (!response.ok) {
-            if (response.status === 403) {
-                throw new Error("Você não tem permissão para cadastrar usuários.");
-            }
-            throw new Error("Erro ao cadastrar usuário");
+            throw new Error();
         }
 
-        await carregarUsuarios();
+        // Sucesso
         form.reset();
         modal.classList.add("hidden");
-
+        editandoUsername = null;
+        form.querySelector("button[type='submit']").textContent = "Cadastrar";
+        carregarUsuarios();
     } catch (error) {
-        alert("Erro ao cadastrar usuário.");
+        if (editandoUsername) {
+            alert("Erro ao atualizar usuário.");
+        } else {
+            alert("Erro ao cadastrar usuário.");
+        }
     }
 });
 
+
 botaoAbrirModal.addEventListener("click", () => modal.classList.remove("hidden"));
-botaoFecharModal.addEventListener("click", () => modal.classList.add("hidden"));
+botaoFecharModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    form.reset(); // limpa os campos
+    editandoUsername = null; // cancela edição
+    form.querySelector("button[type='submit']").textContent = "Cadastrar";
+});
 
 carregarUsuarios();
 
