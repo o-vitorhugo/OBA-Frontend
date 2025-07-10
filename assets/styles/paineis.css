@@ -32,6 +32,9 @@ header {
     margin-left: 10%;
     margin-top: 5%;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .navMenu p {
@@ -219,6 +222,26 @@ h3 {
 #fechar-modal:hover,
 #cancelar-remocao:hover {
     background-color: #f8a600ee;
+}
+
+.busca-usuarios {
+    margin-bottom: 30px;
+}
+
+#busca-usuario {
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+#busca-usuario:focus {
+    box-shadow: 0 0 0 3px rgba(36, 187, 211, 0.4);
 }
 
 .cards-container {
@@ -477,7 +500,7 @@ h3 {
     .card {
         padding: 18px;
     }
-    
+
     .card-info img {
         width: 70px;
         height: 70px;

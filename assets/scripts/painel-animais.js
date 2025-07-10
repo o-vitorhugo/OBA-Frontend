@@ -18,6 +18,8 @@ if (!token) {
 
 function limparFormulario() {
     form.reset();
+    document.getElementById("imagem-preview").style.display = "none";
+    document.getElementById("imagem-preview").src = "";
     editandoIndex = null;
     form.querySelector("button[type='submit']").textContent = "Cadastrar";
 }
@@ -89,12 +91,15 @@ async function salvarAnimalApi(animal, id = null) {
             body: JSON.stringify(animal)
         });
 
-        if (!response.ok) throw new Error("Erro ao salvar animal");
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`Erro ao salvar animal: ${response.status} - ${text}`);
+        }
 
         return await response.json();
     } catch (error) {
         console.error(error);
-        alert("Erro ao salvar animal");
+        alert(error.message);
     }
 }
 
@@ -121,7 +126,9 @@ function editarAnimal(index) {
     document.getElementById("idade").value = animal.idade;
     document.getElementById("sexo").value = animal.sexo;
     document.getElementById("porte").value = animal.porte;
-    document.getElementById("imagem").value = animal.imagem;
+    document.getElementById("imagem-preview").src = animal.imagem || "";
+    document.getElementById("imagem-preview").style.display = animal.imagem ? "block" : "none";
+
 
     editandoIndex = index;
     form.querySelector("button[type='submit']").textContent = "Salvar Alterações";
@@ -151,6 +158,26 @@ document.getElementById('cancelar-remocao').addEventListener('click', () => {
     document.getElementById('modal-confirmacao').classList.add('hidden');
 });
 
+async function uploadImagem(id, file) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+        const response = await fetch(`${API_BASE}/${id}/imagem`, {
+            method: "PUT",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            body: formData
+        });
+
+        if (!response.ok) throw new Error("Erro ao enviar imagem");
+    } catch (error) {
+        console.error("Erro ao fazer upload da imagem:", error);
+        alert("Erro ao fazer upload da imagem.");
+    }
+}
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -160,21 +187,23 @@ form.addEventListener("submit", async (e) => {
         idade: Number(document.getElementById("idade").value.trim()),
         sexo: document.getElementById("sexo").value,
         porte: document.getElementById("porte").value,
-        imagem: document.getElementById("imagem").value.trim()
     };
 
+    const file = document.getElementById("imagem").files[0];
     let salvo;
 
     if (editandoIndex !== null) {
         const id = animais[editandoIndex].id;
         salvo = await salvarAnimalApi(novoAnimal, id);
+        if (salvo && file) await uploadImagem(id, file);
         if (salvo) animais[editandoIndex] = salvo;
     } else {
         salvo = await salvarAnimalApi(novoAnimal);
+        if (salvo && file) await uploadImagem(salvo.id, file);
         if (salvo) animais.unshift(salvo);
     }
 
-    atualizarTabela();
+    await carregarAnimais();
     limparFormulario();
     modal.classList.add("hidden");
 });

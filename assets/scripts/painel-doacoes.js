@@ -1,10 +1,19 @@
-const form = document.getElementById("form-doacao");
+const API_DOACOES = "https://oba-dogs-api.onrender.com/api/doacoes";
+const token = localStorage.getItem("token");
 
-let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+const form = document.getElementById("form-doacao");
+const modal = document.getElementById("modal-cadastro");
+const botaoAbrirModal = document.getElementById("botao-abrir-modal");
+const botaoFecharModal = document.getElementById("fechar-modal");
+const container = document.getElementById("cards-doacoes");
+
+let doacoes = [];
 let editandoIndex = null;
 
-function salvarLocalStorage() {
-    localStorage.setItem("doacoes", JSON.stringify(doacoes));
+// Redireciona se não estiver logado
+if (!token) {
+    alert("Você precisa fazer login.");
+    window.location.href = "./login.html";
 }
 
 function limparFormulario() {
@@ -13,7 +22,22 @@ function limparFormulario() {
     form.querySelector("button[type='submit']").textContent = "Cadastrar";
 }
 
-const container = document.getElementById("cards-doacoes");
+async function carregarDoacoes() {
+    try {
+        const response = await fetch(API_DOACOES, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+        if (!response.ok) throw new Error("Erro ao carregar doações");
+
+        doacoes = await response.json();
+        atualizarTabela();
+    } catch (error) {
+        console.error(error);
+        container.innerHTML = `<p>Erro ao carregar doações.</p>`;
+    }
+}
 
 function atualizarTabela() {
     container.innerHTML = ``;
@@ -68,13 +92,25 @@ function removerDoacao(index) {
     document.getElementById('modal-confirmacao').classList.remove('hidden');
 }
 
-document.getElementById('confirmar-remocao').addEventListener('click', () => {
+document.getElementById('confirmar-remocao').addEventListener('click', async () => {
     if (indiceParaRemover !== null) {
-        doacoes.splice(indiceParaRemover, 1);
-        salvarLocalStorage();
-        atualizarTabela();
-        indiceParaRemover = null;
-        document.getElementById('modal-confirmacao').classList.add('hidden');
+        const id = doacoes[indiceParaRemover].id;
+        try {
+            const response = await fetch(`${API_DOACOES}/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            });
+            if (!response.ok) throw new Error("Erro ao deletar doação");
+
+            doacoes.splice(indiceParaRemover, 1);
+            atualizarTabela();
+            indiceParaRemover = null;
+            document.getElementById('modal-confirmacao').classList.add('hidden');
+        } catch (error) {
+            alert("Erro ao deletar doação");
+        }
     }
 });
 
@@ -83,7 +119,7 @@ document.getElementById('cancelar-remocao').addEventListener('click', () => {
     document.getElementById('modal-confirmacao').classList.add('hidden');
 });
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const novaDoacao = {
@@ -93,24 +129,45 @@ form.addEventListener("submit", (e) => {
         data: document.getElementById("data").value,
     };
 
-    if (editandoIndex !== null) {
-        doacoes[editandoIndex] = novaDoacao;
-    } else {
-        doacoes.unshift(novaDoacao);
+    try {
+        let salvo;
+        if (editandoIndex !== null) {
+            const id = doacoes[editandoIndex].id;
+            const response = await fetch(`${API_DOACOES}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify(novaDoacao)
+            });
+            if (!response.ok) throw new Error("Erro ao atualizar doação");
+
+            salvo = await response.json();
+            doacoes[editandoIndex] = salvo;
+        } else {
+            const response = await fetch(API_DOACOES, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify(novaDoacao)
+            });
+            if (!response.ok) throw new Error("Erro ao cadastrar doação");
+
+            salvo = await response.json();
+            doacoes.unshift(salvo);
+        }
+
+        atualizarTabela();
+        limparFormulario();
+        modal.classList.add("hidden");
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao salvar doação.");
     }
-
-    salvarLocalStorage();
-    atualizarTabela();
-    limparFormulario();
-
-    modal.classList.add("hidden");
 });
-
-atualizarTabela();
-
-const botaoAbrirModal = document.getElementById("botao-abrir-modal");
-const botaoFecharModal = document.getElementById("fechar-modal");
-const modal = document.getElementById("modal-cadastro");
 
 botaoAbrirModal.addEventListener("click", () => {
     modal.classList.remove("hidden");
@@ -120,3 +177,5 @@ botaoFecharModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     limparFormulario();
 });
+
+carregarDoacoes();

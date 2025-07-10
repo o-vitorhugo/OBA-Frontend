@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <title>Painel de Doações – OBA!</title>
+    <title>Painel de Usuários – OBA!</title>
 </head>
 
 <body>
@@ -36,14 +36,14 @@
                     </div>
                 </a>
                 <a href="./painel-doacoes.html">
-                    <div class="currentOpt">
+                    <div class="navOpt">
                         <img src="./assets/images/coin.svg"
                             style="height: 20px; width: auto;vertical-align: -10%;margin-right: 10px;">
                         Doações
                     </div>
                 </a>
                 <a href="./painel-usuarios.html">
-                    <div class="navOpt">
+                    <div class="currentOpt">
                         <img src="./assets/images/user.svg"
                             style="height: 20px; width: auto;vertical-align: -10%;margin-right: 10px;">
                         Usuários
@@ -58,28 +58,28 @@
     <main class="doacoes">
         <section class="painel-container">
             <div class="painel-header">
-                <h2>Painel Doações</h2>
+                <h2>Painel Usuários</h2>
                 <button id="botao-abrir-modal">+</button>
+            </div>
+
+            <div class="busca-usuarios">
+                <input type="text" id="busca-usuario" placeholder="Buscar usuário por e-mail">
             </div>
 
             <!-- Modal de Cadastro -->
             <div id="modal-cadastro" class="modal hidden">
                 <div class="modal-content">
-                    <h3>Cadastrar Doação</h3>
-                    <form id="form-doacao">
-                        <input type="text" id="nome" placeholder="Nome" required>
+                    <h3>Cadastrar Usuário</h3>
+                    <form id="form-usuario">
+                        <input type="email" id="username" placeholder="E-mail" required>
 
-                        <select id="tipo" required>
-                            <option value="">Tipo</option>
-                            <option value="Financeira">Financeira</option>
-                            <option value="Ração">Ração</option>
-                            <option value="Medicamento">Medicamento</option>
-                            <option value="Outro">Outro</option>
+                        <input type="password" id="password" placeholder="Senha" required>
+
+                        <select id="role" required>
+                            <option value="">Permissão</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="SUPER_ADMIN">SUPER_ADMIN</option>
                         </select>
-
-                        <input type="text" id="descricao" placeholder="Descrição">
-
-                        <input type="date" id="data" placeholder="Data">
 
                         <div class="botoes-form">
                             <button type="submit">Cadastrar</button>
@@ -90,24 +90,13 @@
             </div>
         </section>
 
-        <!-- Modal de Confirmação -->
-        <div id="modal-confirmacao" class="modal hidden">
-            <div class="modal-content">
-                <h3>Deseja realmente remover esta doação?</h3>
-                <div class="botoes-form">
-                    <button id="confirmar-remocao">Sim</button>
-                    <button id="cancelar-remocao">Cancelar</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cards de Doações -->
+        <!-- Cards de Usuários -->
         <section>
-            <div id="cards-doacoes" class="cards-container"></div>
+            <div id="cards-usuarios" class="cards-container"></div>
         </section>
     </main>
 
-    <script type="text/javascript" src="./assets/scripts/painel-doacoes.js"></script>
+    <script type="text/javascript" src="./assets/scripts/painel-usuarios.js"></script>
 </body>
 
 </html>
