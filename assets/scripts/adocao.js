@@ -20,7 +20,7 @@ function renderizarAnimais(animais) {
         card.classList.add("card");
 
         card.innerHTML = `
-            <img src="${animal.imagem}" alt="${animal.nome}" onerror="this.src='./assets/images/placeholder.png'" />
+            <img src="https://oba-dogs-api.onrender.com${animal.imagemUrl}?t=${Date.now()}" alt="${animal.nome}" onerror="this.src='./assets/images/placeholder.png'">
             <h3>${animal.nome}</h3>
             <p>Espécie: ${animal.especie}</p>
             <p>Idade: ${animal.idade}</p>
