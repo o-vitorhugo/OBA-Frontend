@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("cards-animais");
+    const API_URL = "https://oba-dogs-api.onrender.com/api/dogs";
 
     // Mostrar mensagem de carregamento
     container.innerHTML = `<p>Carregando animais...</p>`;
 
-    // Tentar carregar os dados do localStorage
-    const dadosSalvos = localStorage.getItem("animais");
-
-    if (dadosSalvos) {
-        try {
-            const animais = JSON.parse(dadosSalvos);
+    // Carregar os dados do backend
+    fetch(API_URL)
+        .then(response => {
+            if (!response.ok) throw new Error("Erro ao buscar animais");
+            return response.json();
+        })
+        .then(animais => {
             container.innerHTML = ``; // limpa o "Carregando..."
 
             if (!animais.length) {
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const maisRecentes = animais.slice(-3).reverse(); // Últimos 3 animais
+            const maisRecentes = animais.slice(-3).reverse(); // últimos 3 animais cadastrados
 
             maisRecentes.forEach(animal => {
                 const card = document.createElement("div");
@@ -35,11 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 container.appendChild(card);
             });
-        } catch (error) {
+        })
+        .catch(error => {
             container.innerHTML = `<p>Não foi possível carregar os animais no momento.</p>`;
             console.error("Erro ao buscar animais:", error);
-        }
-    } else {
-        container.innerHTML = `<p>Nenhum animal disponível no momento.</p>`;
-    }
+        });
 });

@@ -3,6 +3,7 @@ const filtroEspecie = document.getElementById("filtro-especie");
 const filtroPorte = document.getElementById("filtro-porte");
 const filtroSexo = document.getElementById("filtro-sexo");
 
+const API_URL = "https://oba-dogs-api.onrender.com/api/dogs";
 let listaAnimais = [];
 
 // Função para renderizar cards filtrados
@@ -49,19 +50,18 @@ function aplicarFiltros() {
     renderizarAnimais(filtrados);
 }
 
-// Carregar os dados do localStorage
-const dadosSalvos = localStorage.getItem("animais");
-
-if (dadosSalvos) {
+// Carregar os dados do backend
+async function carregarAnimais() {
     try {
-        listaAnimais = JSON.parse(dadosSalvos).slice().reverse(); // mais recentes no topo
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Erro ao buscar animais");
+        const data = await response.json();
+        listaAnimais = data.slice().reverse(); // mostrar os mais recentes primeiro
         renderizarAnimais(listaAnimais);
     } catch (error) {
         container.innerHTML = `<p>Não foi possível carregar os animais no momento.</p>`;
         console.error("Erro ao buscar animais:", error);
     }
-} else {
-    container.innerHTML = `<p>Nenhum animal disponível no momento.</p>`;
 }
 
 // Eventos para filtros
@@ -79,3 +79,5 @@ botaoLimpar.addEventListener("click", () => {
 
     renderizarAnimais(listaAnimais);
 });
+
+carregarAnimais();
