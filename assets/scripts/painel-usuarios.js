@@ -153,40 +153,72 @@ botaoFecharModal.addEventListener("click", () => {
 carregarUsuarios();
 
 // Função para buscar usuário por nome
-campoBusca.addEventListener("input", async () => {
-    const valor = campoBusca.value.trim();
+campoBusca.addEventListener("input", () => {
+    const valor = campoBusca.value.trim().toLowerCase();
 
     if (valor === "") {
         carregarUsuarios();
         return;
     }
 
+    // Filtrar localmente os usuários já carregados
+    const cardsFiltrados = doUsuariosFiltrados(valor);
+    exibirUsuarios(cardsFiltrados);
+});
+
+// Reaproveita os dados da última chamada (cache local)
+let usuariosCarregados = [];
+
+async function carregarUsuarios() {
     try {
-        const response = await fetch(`${API_USERS}/${encodeURIComponent(valor)}`, {
+        const response = await fetch(API_USERS, {
             headers: {
                 "Authorization": "Bearer " + token
             }
         });
 
-        if (!response.ok) {
-            if (response.status === 404) {
-                container.innerHTML = "<p>Nenhum usuário encontrado com esse e-mail.</p>";
-                return;
-            }
-            throw new Error("Erro ao buscar usuário.");
-        }
+        if (!response.ok) throw new Error("Erro ao buscar usuários");
 
-        const user = await response.json();
+        usuariosCarregados = await response.json();
+        exibirUsuarios(usuariosCarregados);
 
-        container.innerHTML = `
-            <div class="card">
-                <div class="card-info">
-                    <h3>${user.username}</h3>
-                    <p>Permissão: ${user.role}</p>
-                </div>
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p>Erro ao carregar usuários.</p>";
+    }
+}
+
+function doUsuariosFiltrados(filtro) {
+    return usuariosCarregados.filter(user =>
+        user.username.toLowerCase().includes(filtro)
+    );
+}
+
+function exibirUsuarios(lista) {
+    container.innerHTML = "";
+
+    if (lista.length === 0) {
+        container.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+        return;
+    }
+
+    lista.forEach(user => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <div class="card-info">
+                <h3>${user.username}</h3>
+                <p>Permissão: ${user.role}</p>
+            </div>
+            <div class="card-acoes">
+                <button onclick="editarUsuario('${user.username}')">
+                    <img src="./assets/images/pencil.svg">
+                </button>
+                <button onclick="removerUsuario('${user.username}')">
+                    <img src="./assets/images/trash.svg">
+                </button>
             </div>
         `;
-    } catch (error) {
-        container.innerHTML = "<p>Erro ao buscar usuário.</p>";
-    }
-});
+        container.appendChild(card);
+    });
+}

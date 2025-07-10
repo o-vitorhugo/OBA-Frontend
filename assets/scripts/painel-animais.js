@@ -180,9 +180,11 @@ async function uploadImagem(id, file) {
         });
 
         if (!response.ok) throw new Error("Erro ao enviar imagem");
+        return await response.json();
     } catch (error) {
         console.error("Erro ao fazer upload da imagem:", error);
         alert("Erro ao fazer upload da imagem.");
+        return null;
     }
 }
 
@@ -206,17 +208,49 @@ form.addEventListener("submit", async (e) => {
     if (editandoIndex !== null) {
         const id = animais[editandoIndex].id;
         salvo = await salvarAnimalApi(novoAnimal, id);
-        if (salvo && file) await uploadImagem(id, file);
+        if (salvo && file) {
+            await uploadImagem(id, file);
+            salvo = await buscarAnimalPorId(id);
+        }
         if (salvo) animais[editandoIndex] = salvo;
     } else {
         salvo = await salvarAnimalApi(novoAnimal);
-        if (salvo && file) await uploadImagem(salvo.id, file);
+        if (salvo && file) {
+            await uploadImagem(salvo.id, file);
+            salvo = await buscarAnimalPorId(salvo.id);
+        }
         if (salvo) animais.unshift(salvo);
     }
 
     await carregarAnimais();
     limparFormulario();
     modal.classList.add("hidden");
+});
+
+async function buscarAnimalPorId(id) {
+    try {
+        const res = await fetch(`${API_BASE}/${id}`, {
+            headers: { "Authorization": "Bearer " + token }
+        });
+        if (!res.ok) throw new Error("Erro ao buscar animal atualizado");
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
+document.getElementById("imagem").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const preview = document.getElementById("imagem-preview");
+            preview.src = reader.result;
+            preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    }
 });
 
 botaoAbrirModal.addEventListener("click", () => {
