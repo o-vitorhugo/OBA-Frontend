@@ -180,7 +180,6 @@ async function uploadImagem(id, file) {
         });
 
         if (!response.ok) throw new Error("Erro ao enviar imagem");
-        return await response.json();
     } catch (error) {
         console.error("Erro ao fazer upload da imagem:", error);
         alert("Erro ao fazer upload da imagem.");
