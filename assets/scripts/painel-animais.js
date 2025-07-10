@@ -11,10 +11,10 @@ let animais = [];
 let editandoIndex = null;
 
 // Redireciona se não estiver logado
-if (!token) {
-    alert("Você precisa fazer login.");
-    window.location.href = "./login.html";
-}
+// if (!token) {
+//     alert("Você precisa fazer login.");
+//     window.location.href = "./login.html";
+// }
 
 function limparFormulario() {
     form.reset();
@@ -73,6 +73,11 @@ function atualizarTabela() {
 }
 
 async function salvarAnimalApi(animal, id = null) {
+    if (!animal.nome || !animal.especie || !animal.idade || !animal.sexo || !animal.porte) {
+        alert("Preencha todos os campos obrigatórios.");
+        return;
+    }
+
     let url = API_BASE;
     let method = "POST";
 
@@ -82,6 +87,8 @@ async function salvarAnimalApi(animal, id = null) {
     }
 
     try {
+        console.log("JSON enviado:", JSON.stringify(animal));
+
         const response = await fetch(url, {
             method: method,
             headers: {
@@ -92,8 +99,9 @@ async function salvarAnimalApi(animal, id = null) {
         });
 
         if (!response.ok) {
-            const text = await response.text();
-            throw new Error(`Erro ao salvar animal: ${response.status} - ${text}`);
+            const errorData = await response.json().catch(() => ({}));
+            console.error("Erro detalhado:", errorData);
+            throw new Error(`Erro ${response.status}: ${errorData.message || "Erro ao salvar animal"}`);
         }
 
         return await response.json();
@@ -191,6 +199,8 @@ form.addEventListener("submit", async (e) => {
 
     const file = document.getElementById("imagem").files[0];
     let salvo;
+
+    console.log("Enviando:", novoAnimal);
 
     if (editandoIndex !== null) {
         const id = animais[editandoIndex].id;
