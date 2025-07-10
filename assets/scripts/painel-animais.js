@@ -11,10 +11,10 @@ let animais = [];
 let editandoIndex = null;
 
 // Redireciona se não estiver logado
-// if (!token) {
-//     alert("Você precisa fazer login.");
-//     window.location.href = "./login.html";
-// }
+if (!token) {
+    alert("Você precisa fazer login.");
+    window.location.href = "./login.html";
+}
 
 function limparFormulario() {
     form.reset();
@@ -131,12 +131,12 @@ function editarAnimal(index) {
     const animal = animais[index];
     document.getElementById("nome").value = animal.nome;
     document.getElementById("especie").value = animal.especie;
+    document.getElementById("raca").value = animal.raca;
     document.getElementById("idade").value = animal.idade;
     document.getElementById("sexo").value = animal.sexo;
     document.getElementById("porte").value = animal.porte;
     document.getElementById("imagem-preview").src = animal.imagem || "";
     document.getElementById("imagem-preview").style.display = animal.imagem ? "block" : "none";
-
 
     editandoIndex = index;
     form.querySelector("button[type='submit']").textContent = "Salvar Alterações";
@@ -192,6 +192,7 @@ form.addEventListener("submit", async (e) => {
     const novoAnimal = {
         nome: document.getElementById("nome").value.trim(),
         especie: document.getElementById("especie").value.trim(),
+        raca: document.getElementById("raca").value.trim(),
         idade: Number(document.getElementById("idade").value.trim()),
         sexo: document.getElementById("sexo").value,
         porte: document.getElementById("porte").value,

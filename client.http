@@ -65,3 +65,52 @@ Authorization: Bearer {{token}}
 ### Get user by username
 GET {{host}}/api/users/user1@example.com
 Authorization: Bearer {{token}}
+
+### Update a user (SUPER_ADMIN only, replace user1@example.com with actual username)
+PUT {{host}}/api/users/user1@example.com
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "username": "user1edit@example.com",
+  "password": "newpassword",
+  "role": "ADMIN"
+}
+
+### Delete a user (SUPER_ADMIN only, replace user1edit@example.com with actual username)
+DELETE {{host}}/api/users/user1edit@example.com
+Authorization: Bearer {{token}}
+
+### Create a new donation
+POST {{host}}/api/doacoes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "João Teste",
+  "tipo": "Ração",
+  "descricao": "Doação de ração para cães",
+  "data": "2024-07-10"
+}
+
+### List all donations
+GET {{host}}/api/doacoes
+
+### Get donation by ID (replace 1 with actual ID)
+GET {{host}}/api/doacoes/1
+
+### Update a donation (replace 1 with actual ID)
+PUT {{host}}/api/doacoes/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "João Teste Editado",
+  "tipo": "Medicamento",
+  "descricao": "Doação de medicamentos para cães",
+  "data": "2024-07-11"
+}
+
+### Delete a donation (replace 1 with actual ID)
+DELETE {{host}}/api/doacoes/1
+Authorization: Bearer {{token}}
